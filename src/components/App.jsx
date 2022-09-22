@@ -3,49 +3,39 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Searchbar } from "./Searchbar/Searchbar";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
-import { getImages } from "./services/api";
+import { LoadMore } from "./Button/Button";
+
+
 
 export class App extends Component {
   state = {
     images: [],
     query: '',
-    page: 1,
-    isLoading: false,
+    page: 1,    
     
   }
 
-  addImages = async (query) => {  
-    try {
-         this.setState({
-            query,
-            isLoading:true
-          });
-    
-        const images = await getImages(query);
-        console.log(images)
-        this.setState(prevState => (
-          {
-            images: [...prevState.images, ...images],
-            isLoading: false}
-        ))
-      
-    } catch (error) {
-      console.log(error)
-    }
-   
+  addQuery = async (query) => {     
+    this.setState({ query, images: [], page: 1 });  
   }
 
-
+  incrementPage = () => {
+    this.setState(prevState => ({
+      page: prevState.page + 1
+    }))
+}
 
   render() {
-    const { images, isLoading } = this.state;
-    const { addImages } = this;
+    const { query, isLoading } = this.state;
+    const { addQuery, incrementPage } = this;
 
     return (
       <>
-        <Searchbar onSubmit={addImages} isSubmitting={ isLoading} />
-        <ImageGallery items={images} />
-        <ToastContainer autoClose={3000} position="top-center"/>
+        <Searchbar onSubmit={addQuery}  />
+        <ImageGallery status = {this.state} />
+        <ToastContainer autoClose={3000} position="top-center" />
+        {query && <LoadMore type='button' text="Load more" onClick={ incrementPage} />}
+       
 
       </>
      
