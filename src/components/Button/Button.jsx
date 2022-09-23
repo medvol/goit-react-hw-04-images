@@ -8,3 +8,9 @@ export const LoadMore = ({ type, text, onClick }) => {
         </button>
     )
 }
+
+LoadMore.propTypes = {
+    type: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+}
