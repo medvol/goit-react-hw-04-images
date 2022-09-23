@@ -8,18 +8,31 @@ const modalRoot = document.querySelector('#modal-root')
 
 export class Modal extends Component{
     componentDidMount() {
-        console.log(this.props)
+        window.addEventListener('keydown', this.handleKeyDown);
         
     }
     componentWillUnmount() {
+        window.removeEventListener('keydown', this.handleKeyDown);
         
+    }
+
+    handleKeyDown = event => {
+        if (event.code === 'Escape'){
+            this.props.closeModal();
+        }
+    }
+
+    handleOverlayClick = event => {
+        if (event.currentTarget === event.target) {
+            this.props.closeModal();
+        }
     }
 
     render() {
         const { children, closeModal } = this.props;
 
         return createPortal(
-            <Overlay >
+            <Overlay onClick={this.handleOverlayClick} >
                 <CloseButton onClick = {closeModal}>
                     <AiOutlineCloseCircle  />
                 </CloseButton>

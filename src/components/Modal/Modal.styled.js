@@ -15,15 +15,17 @@ position: fixed;
 `
 export  const CloseButton = styled(AiOutlineCloseCircle)`
 position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 8px;
+  right: 26px;
   width: 36px;
   height: 36px;
   fill: white;
 `
 
 export const ModalContent = styled.div`
-max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+max-width: calc(100vw - 56px);
+  max-height: calc(100vh - 56px);
+  overflow: hidden;
+  object-fit: contain;
 `
 
