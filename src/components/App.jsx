@@ -8,11 +8,9 @@ import { LoadMore } from "./Button/Button";
 
 
 export class App extends Component {
-  state = {
-    images: [],
+  state = {    
     query: '',
-    page: 1,    
-    
+    page: 1,        
   }
 
   addQuery = async (query) => {     
@@ -26,7 +24,7 @@ export class App extends Component {
 }
 
   render() {
-    const { query, isLoading } = this.state;
+    const { query} = this.state;
     const { addQuery, incrementPage } = this;
 
     return (

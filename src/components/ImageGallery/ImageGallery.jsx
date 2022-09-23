@@ -9,32 +9,40 @@ import { Gallery } from './ImageGallery.styled';
 
 export class ImageGallery extends Component {
     state = {
-        images: [],
+        images:[],
         status: 'idle',        
         error: null
     }
 
     async componentDidUpdate(prevProps, prevState) {
-        console.log(prevProps.status, this.props.status)
+     
         const { query: prevImageName, page: prevPage } = prevProps.status;
         const { query: nextImageName, page: nextPage } = this.props.status;
-        // const prevImageName = prevProps.status.query;
-        // const nextImageName = this.props.status.query;
+        
+        if (prevImageName !== nextImageName) {
+            this.setState({images: []})
+        }
         if (prevImageName !== nextImageName || prevPage !== nextPage) {
 
             try {            
                 this.setState({ status: 'pending' });
 
                 const images = await getImages(nextImageName, nextPage);
-                if (images.length === 0) return toast.info(`We do not find ${nextImageName}`, { theme: "colored" });                    
+                if (images.total === prevState.images.length) {
+                    this.setState({ status: 'resolved' })
+                    return toast.info(`No more ${nextImageName} to load`, { theme: "colored" })
+                }
+                if (images.hits.length === 0) return toast.info(`We do not find ${nextImageName}`, { theme: "colored" });
+                
                 this.setState(prevState => (
                     {
-                    images: [...prevState.images, ...images],
+                    images: [...prevState.images, ...images.hits],
                     status: 'resolved'
                 }
                 ));
         
             } catch (error) { this.setState({ error, status: 'rejected' }) }
+            finally {}
         }
     }      
             
@@ -68,9 +76,3 @@ export class ImageGallery extends Component {
 //         }))
 // }
 
-// {error && <h1>{error.message}</h1>}
-//                     {images.length > 0 ? <Gallery >
-//                         {images.map(image => (
-//                             < ImageGalleryItem key={image.id} item={image} />
-//                         ))}
-//                     </Gallery> : null}
