@@ -3,13 +3,13 @@ export const theme = {
     black: '#000',
     white: '#fff',
     text: '#2a2a2a',
-    background: '#fff',
+    background: '#3f51b5',
     primary: '#07c',
     secondary: '#05a',
-    accent: '#609',
-    muted: 'rgba(0, 0, 0, 0.6)',
+    accent: '#303f9f',
+    modal: 'rgba(0, 0, 0, 0.8)',
   },
-  space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
+  space: [0, 2, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
     body: 'system-ui, sans-serif',
     heading: 'system-ui, sans-serif',
@@ -37,10 +37,14 @@ export const theme = {
   },
   radii: {
     none: '0',
-    normal: '4px',
+    normal: '2px',
     round: '50%',
     },
   shadows: {
-    card: 'rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px',
+    card: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
+  },
+  zIndices: {
+    search: 1100,
+    modal: 1200,
   }
 };

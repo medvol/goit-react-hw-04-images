@@ -2,29 +2,29 @@ import styled from "styled-components";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 export const Overlay = styled.div`
-position: fixed;
-  top: 0;
-  left: 0;
+  position: fixed;
+  top: ${p => p.theme.space[0]}px;
+  left: ${p => p.theme.space[0]}px;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1200;
+  background-color: ${p=> p.theme.colors.modal};
+  z-index: ${p=> p.theme.zIndices.modal};
 `
 export  const CloseButton = styled(AiOutlineCloseCircle)`
-position: absolute;
-  top: 8px;
-  right: 26px;
-  width: 36px;
-  height: 36px;
-  fill: white;
+  position: absolute;
+  top: ${p => p.theme.space[3]}px;
+  right: ${p => p.theme.space[5]}px;
+  width: ${p => p.theme.space[5]}px;
+  height: ${p => p.theme.space[5]}px;
+  fill: ${p=> p.theme.colors.white};
 `
 
 export const ModalContent = styled.div`
-max-width: calc(100vw - 56px);
-  max-height: calc(100vh - 56px);
+  max-width: calc(100vw - ${p => p.theme.space[6]}px);
+  max-height: calc(100vh - ${p => p.theme.space[5]}px);
   overflow: hidden;
   object-fit: contain;
 `

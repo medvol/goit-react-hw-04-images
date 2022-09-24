@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { Box } from 'components/services/Box';
 import { toast } from 'react-toastify';
+import { BiSearchAlt2} from "react-icons/bi";
+import { SearchForm, SearchFormButton, SearchFormInput } from './Searchbar.styled';
 
 
 export class Searchbar extends Component{
@@ -21,22 +24,22 @@ export class Searchbar extends Component{
 
     render() {
         return (
-            <header>
-                <form onSubmit={this.handleSubmit}>
-                    <button type="submit" disabled={this.props.isSubmitting}>
-                    <span>Search</span>
-                    </button>
+            <Box position="sticky" top={0} left={0} zIndex="search" as="header" display='flex' justifyContent='center' alignItems='center'
+            minHeight={6} px={5} py={4} color='white' bg='background' boxShadow='card'>
+                <SearchForm onSubmit={this.handleSubmit}>
+                    <SearchFormButton type="submit" disabled={this.props.isSubmitting}>
+                        <BiSearchAlt2 size='28px' />
+                    </SearchFormButton>
 
-                    <input                   
+                    <SearchFormInput                   
                         type="text"
-                        name="query"
-                        
-                    autoComplete="off"
-                    autoFocus
-                    placeholder="Search images and photos"
+                        name="query"                        
+                        autoComplete="off"
+                        autoFocus
+                        placeholder="Search images and photos"
                     />
-                </form>
-            </header>
+                </SearchForm>
+            </Box>
         )
     }
 }
