@@ -11,7 +11,8 @@ export const ImageGallery = ({ images }) => {
             {images.map(image => (
                 < ImageGalleryItem key={image.id} item={image} />
             ))}
-        </Gallery>       )
+        </Gallery>
+    )
 }
 
 ImageGallery.propTypes = {
